@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Autorización TikTok - Ando Devorando</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="callback">
+    <h1>Autorización recibida</h1>
+    <p id="status">Validando la respuesta de TikTok…</p>
+    <p>Puede cerrar esta pestaña cuando Codex confirme que el acceso se ha guardado.</p>
+  </main>
+  <script>
+    const query = new URLSearchParams(location.search);
+    const status = document.getElementById('status');
+    status.textContent = query.has('error')
+      ? `TikTok devolvió un error: ${query.get('error_description') || query.get('error')}`
+      : query.has('code')
+        ? 'Código recibido correctamente. Regrese a Codex para finalizar.'
+        : 'No se recibió ningún código de autorización.';
+  </script>
+</body>
+</html>
